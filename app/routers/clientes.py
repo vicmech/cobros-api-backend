@@ -13,7 +13,7 @@ router = APIRouter(
     dependencies=[Depends(get_current_user)] 
 )
 
-@router.post("/create/", response_model=schemas.ClientesResponse)
+@router.post("/create", response_model=schemas.ClientesResponse)
 def create_client(cliente: schemas.ClientesCreate, db: Session = Depends(get_db)):
 
     #ADD THE EXCEPTION, DONT FORGET IT
@@ -25,7 +25,7 @@ def create_client(cliente: schemas.ClientesCreate, db: Session = Depends(get_db)
     db.refresh(new_cliente)
     return new_cliente
 
-@router.get("/simple_list/", response_model=list[schemas.ClientesSimpleResponse])
+@router.get("/simple_list", response_model=list[schemas.ClientesSimpleResponse])
 def list_simple_clients(
     db: Session = Depends(get_db),
     #Query parameters
@@ -47,7 +47,7 @@ def list_simple_clients(
 
     return query.all()
 
-@router.get("/{id_cliente}/", response_model=schemas.ClienteWithDistrito)
+@router.get("/{id_cliente}", response_model=schemas.ClienteWithDistrito)
 def list_clients(
     #Query parameters
     id_cliente: str,
@@ -74,7 +74,7 @@ def list_clients(
 
     return query.first()
 
-@router.get("/full_credit_info/{id_cliente}/", response_model=schemas.ClientesResponse)
+@router.get("/full_credit_info/{id_cliente}", response_model=schemas.ClientesResponse)
 def get_client(
     id_cliente: str, 
     db: Session = Depends(get_db)

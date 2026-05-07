@@ -64,7 +64,7 @@ def list_pagos(
     
     return query.all()
 
-@router.get("/trabajador/{id_trabajador}/", response_model=list[schemas.PagosResponse])
+@router.get("/trabajador/{id_trabajador}", response_model=list[schemas.PagosResponse])
 def list_pagos_trabajador(
     id_trabajador: str,
     metodo_pago: Optional[pay_method] = None,
@@ -87,7 +87,7 @@ def list_pagos_trabajador(
     )
     return query.all()
 
-@router.get("/{id_pago}/", response_model=schemas.PagosResponse)
+@router.get("/{id_pago}", response_model=schemas.PagosResponse)
 def get_pago(id_pago: str, db: Session = Depends(get_db)):
     query = db.query(models.Pagos).filter(models.Pagos.id_pago == id_pago)
     db_pago = query.first()

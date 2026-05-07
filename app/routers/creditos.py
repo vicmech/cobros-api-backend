@@ -149,7 +149,7 @@ def get_creditos_summary(
 
     return query.all()
 
-@router.get("/{id_credito}/", response_model=schemas.CreditosFullResponse)
+@router.get("/{id_credito}", response_model=schemas.CreditosFullResponse)
 def get_credito(id_credito: str, db: Session = Depends(get_db)):
     
     query = db.query(models.Creditos).filter(

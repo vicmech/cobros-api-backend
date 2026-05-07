@@ -10,7 +10,7 @@ router = APIRouter(
     tags=["Users"],
     dependencies=[Depends(get_current_user)] 
 )
-@router.get("/{username}/", response_model=schemas.UsersResponse)
+@router.get("/{username}", response_model=schemas.UsersResponse)
 def get_user(username: str, db: Session = Depends(get_db)):
     query = db.query(models.Users).filter(models.Users.username == username)
     db_user = query.first()
@@ -18,7 +18,7 @@ def get_user(username: str, db: Session = Depends(get_db)):
         return db_user
     raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
-@router.post("/create/", response_model=schemas.UsersResponse)
+@router.post("/create", response_model=schemas.UsersResponse)
 def create_user(
     user: schemas.UsersCreate,
     db: Session = Depends(get_db)

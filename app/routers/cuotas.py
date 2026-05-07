@@ -58,7 +58,7 @@ def get_trabajador_route(
     
     return []
 
-@router.get('/expired/{id_trabajador}/', response_model=list[schemas.CuotasProgressResponse])
+@router.get('/expired/{id_trabajador}', response_model=list[schemas.CuotasProgressResponse])
 def get_trabajador_route(
     id_trabajador: str,
     db: Session = Depends(get_db)
