@@ -1,7 +1,7 @@
 from __future__ import annotations
 from pydantic import BaseModel
 from uuid import UUID
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Optional
 
 if TYPE_CHECKING:
     from .trabajadores import TrabajadoresResponse
@@ -36,5 +36,5 @@ class LoginResponse(BaseModel):
     access_token: str
     token_type: str
     user: UsersResponse
-    trabajador: 'TrabajadoresResponse'
+    trabajador: Optional['TrabajadoresResponse']
 
