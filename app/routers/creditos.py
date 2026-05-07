@@ -127,6 +127,7 @@ def get_creditos_summary(
         models.Creditos.fecha_final,
         models.Creditos.tiempo_credito,
         models.Creditos.monto_total,
+        models.Creditos.origen_monto,
         total_pagado.label('monto_pagado'),
         (models.Creditos.monto_total - total_pagado).label('monto_restante'),
         proxima_cuota_fecha.label('proxima_cuota'),
@@ -141,6 +142,12 @@ def get_creditos_summary(
         models.Pagos, models.Cuotas.id_cuota == models.Pagos.id_cuota
     ).group_by(
         models.Creditos.id_credito,
+        models.Creditos.intervalo_cobro,
+        models.Creditos.fecha_inicial,
+        models.Creditos.fecha_final,
+        models.Creditos.tiempo_credito,
+        models.Creditos.monto_total,
+        models.Creditos.origen_monto,
         models.Clientes.id_cliente,
         models.Clientes.nombre,
         models.Clientes.apellido
