@@ -31,7 +31,7 @@ def create_pago(
     cuota = db.query(
         models.Cuotas
     ).filter(
-        models.Cuotas.id_cuota == pago.id_cuota
+        models.Cuotas.id_cuota == str(pago.id_cuota)
     ).first()
 
     if cuota:
