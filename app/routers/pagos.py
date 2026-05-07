@@ -25,7 +25,7 @@ def create_pago(
     total_pagado = db.query(
         func.sum(models.Pagos.monto)
     ).filter(
-        models.Pagos.id_cuota == pago.id_cuota
+        models.Pagos.id_cuota == str(pago.id_cuota)
     ).scalar() or 0
 
     cuota = db.query(

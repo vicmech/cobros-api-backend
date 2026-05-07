@@ -10,7 +10,7 @@ router = APIRouter(
     dependencies=[Depends(get_current_user)] 
 )
 
-@router.get('/', response_model= list[schemas.ProductosResponse])
+@router.get('/all', response_model= list[schemas.ProductosResponse])
 def get_products(
     db : Session = Depends(get_db)
 ):
