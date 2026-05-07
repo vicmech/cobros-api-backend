@@ -12,7 +12,7 @@ router = APIRouter(
     dependencies=[Depends(get_current_user)]
 )
 
-@router.get("/", response_model=list[schemas.DistritosResponse])
+@router.get("/all", response_model=list[schemas.DistritosResponse])
 def list_distritos(
     db: Session = Depends(get_db)
 ):
