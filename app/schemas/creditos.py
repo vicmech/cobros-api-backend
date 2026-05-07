@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any, Optional
+from typing import TYPE_CHECKING, Any, Optional, Union
 from datetime import date, datetime
 from uuid import UUID
 
@@ -44,7 +44,7 @@ class CreditosSimpleResponse(BaseModel):
     fecha_inicial: date
     fecha_final: date
     monto_total: float
-    id_credito: UUID
+    id_credito: Union[UUID, str]
     cliente: 'ClienteWithDistrito'
     id_trabajador: UUID
     id_cliente: UUID
@@ -60,7 +60,7 @@ class CreditosUpdate(CreditosBase):
     pass
 
 class CreditosResponse(CreditosBase):
-    id_credito: UUID
+    id_credito: Union[UUID, str]
     
     class Config:
         from_attributes = True

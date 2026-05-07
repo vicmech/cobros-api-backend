@@ -141,7 +141,9 @@ def get_creditos_summary(
         models.Pagos, models.Cuotas.id_cuota == models.Pagos.id_cuota
     ).group_by(
         models.Creditos.id_credito,
-        models.Clientes.id_cliente
+        models.Clientes.id_cliente,
+        models.Clientes.nombre,
+        models.Clientes.apellido
     ).having(
         # Solo créditos que aún tengan algo por cobrar
         (models.Creditos.monto_total - total_pagado) > 0
